@@ -29,7 +29,7 @@ Once the extension is installed, simply use it in your code by  :
 
 Find in you project:
 ```php
-Breadcrumbs::widget([ ... ...   ])
+Breadcrumbs::widget([ ... ])
 ```
 
 and change:
