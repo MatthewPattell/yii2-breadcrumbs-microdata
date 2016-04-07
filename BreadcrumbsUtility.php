@@ -8,6 +8,7 @@ use yii\helpers\Html;
 class BreadcrumbsUtility
 {
     /**
+     * Returns an array of breadcrumbs microdata
      * @param $links array breadcrumbs links (yii\widgets\Breadcrumbs Public property links)
      * @param int $home start breadcrumbs links (if isset home, $home=2. If not isset home, $home=1)
      * @return array breadcrumbs links
@@ -24,6 +25,7 @@ class BreadcrumbsUtility
     }
 
     /**
+     * Returns a template with microdata for the home page
      * @param $label string name home label
      * @param $url string url link home page
      * @return array
@@ -40,6 +42,7 @@ class BreadcrumbsUtility
     }
 
     /**
+     * It used only within the class, and contains markup template schema.org/BreadcrumbList
      * @param $label
      * @param $url
      * @param $key
