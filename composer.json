@@ -1,0 +1,21 @@
+{
+    "name": "matthew-p/yii2-breadcrumbs-microdata",
+    "description": "Add microdata for breadcrumbs.",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","microdata","breadcrumbs"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Matthew Patell",
+            "email": "lukomi@mail.ru"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "mp\\bmicrodata\\": ""
+        }
+    }
+}
