@@ -35,6 +35,13 @@ Breadcrumbs::widget([ ... ])
 and change:
 
 ```php
+use mp\bmicrodata\BreadcrumbsMicrodata; // in top
+
+BreadcrumbsMicrodata::widget();
+```
+
+Alternate version:
+```php
 Breadcrumbs::widget([     
     'homeLink' => BreadcrumbsUtility::getHome('Home', Yii::$app->getHomeUrl()), // Link home page with microdata
     'links' => isset($this->params['breadcrumbs']) ? BreadcrumbsUtility::UseMicroData($this->params['breadcrumbs']) : [], // Get other links with microdata    
