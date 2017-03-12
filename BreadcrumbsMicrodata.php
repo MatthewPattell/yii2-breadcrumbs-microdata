@@ -27,8 +27,8 @@ class BreadcrumbsMicrodata extends Breadcrumbs
             $config['homeLink'] = BreadcrumbsUtility::getHome($label, $url);
         }
 
-        if (isset($config['breadcrumbs'])) {
-            $config['breadcrumbs'] = BreadcrumbsUtility::UseMicroData($config['breadcrumbs']);
+        if (isset($config['links'])) {
+            $config['links'] = BreadcrumbsUtility::UseMicroData($config['links']);
         }
 
         if (!isset($config['options']['class'])) {
