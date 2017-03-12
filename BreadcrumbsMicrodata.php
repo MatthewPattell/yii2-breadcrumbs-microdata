@@ -7,6 +7,7 @@
 
 namespace mp\bmicrodata;
 
+use Yii;
 use yii\widgets\Breadcrumbs;
 
 /**
@@ -21,11 +22,17 @@ class BreadcrumbsMicrodata extends Breadcrumbs
      */
     public function __construct(array $config = [])
     {
-        if (isset($config['homeLink'])) {
-            $label  = isset($config['homeLink']['label']) ? $config['homeLink']['label'] : null;
-            $url    = isset($config['homeLink']['url']) ? $config['homeLink']['url'] : (is_string($config['homeLink']) ? $config['homeLink'] : null);
-            $config['homeLink'] = BreadcrumbsUtility::getHome($label, $url);
+        if (!isset($config['homeLink']) || $config['homeLink'] === null) {
+            $config['homeLink'] = [
+                'label' => Yii::t('yii', 'Home'),
+                'url'   => Yii::$app->homeUrl,
+            ];
         }
+
+        // Apply microdata to home link
+        $label  = isset($config['homeLink']['label']) ? $config['homeLink']['label'] : null;
+        $url    = isset($config['homeLink']['url']) ? $config['homeLink']['url'] : (is_string($config['homeLink']) ? $config['homeLink'] : null);
+        $config['homeLink'] = BreadcrumbsUtility::getHome($label, $url);
 
         if (isset($config['links'])) {
             $config['links'] = BreadcrumbsUtility::UseMicroData($config['links']);
