@@ -37,7 +37,9 @@ and change:
 ```php
 use mp\bmicrodata\BreadcrumbsMicrodata; // in top
 
-BreadcrumbsMicrodata::widget();
+BreadcrumbsMicrodata::widget([
+    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [], // For PHP7 'links' => $this->params['breadcrumbs'] ?? [] 
+]);
 ```
 
 Alternate version:
