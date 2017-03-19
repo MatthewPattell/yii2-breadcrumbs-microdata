@@ -30,9 +30,11 @@ class BreadcrumbsMicrodata extends Breadcrumbs
         }
 
         // Apply microdata to home link
-        $label  = isset($config['homeLink']['label']) ? $config['homeLink']['label'] : null;
-        $url    = isset($config['homeLink']['url']) ? $config['homeLink']['url'] : (is_string($config['homeLink']) ? $config['homeLink'] : null);
-        $config['homeLink'] = BreadcrumbsUtility::getHome($label, $url);
+        if ($config['homeLink'] !== false) {
+            $label = isset($config['homeLink']['label']) ? $config['homeLink']['label'] : null;
+            $url = isset($config['homeLink']['url']) ? $config['homeLink']['url'] : (is_string($config['homeLink']) ? $config['homeLink'] : null);
+            $config['homeLink'] = BreadcrumbsUtility::getHome($label, $url);
+        }
 
         if (isset($config['links'])) {
             $config['links'] = BreadcrumbsUtility::UseMicroData($config['links']);
