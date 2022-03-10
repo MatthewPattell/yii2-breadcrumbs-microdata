@@ -26,7 +26,8 @@ class BreadcrumbsUtility
 
         foreach ($links as $key => &$link) {
             if(is_array($link)) {
-                $link['template'] = self::getTemplate($link['label'], $link['url'], $key+$home);
+                $url = (isset($link['url'])) ? $link['url'] : false;
+                $link['template'] = self::getTemplate($link['label'], $url, $key+$home);
             }
         }
 
@@ -55,14 +56,20 @@ class BreadcrumbsUtility
      * It used only within the class, and contains markup template schema.org/BreadcrumbList
      *
      * @param string $label
-     * @param array|string $url
+     * @param array|string|bool $url if the $url is false, it is the current page.
      * @param int $key
      * @return string template microdata
      */
     private static function getTemplate($label, $url, $key)
     {
-        return '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">'
-                . Html::a('<span itemprop="name">'.$label.'</span>', Url::to($url), ['itemprop'=>'item'])
+        $template = '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">'
+            . Html::a('<span itemprop="name">'.$label.'</span>', Url::to($url), ['itemprop'=>'item'])
+            . '<meta itemprop="position" content="'.$key.'" /></li>';
+        if ($url === false)
+            $template = '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="text-light" style="opacity: 0.65;">'
+                . Html::tag('span', $label, ['itemprop'=>'name'])
                 . '<meta itemprop="position" content="'.$key.'" /></li>';
+
+        return $template;
     }
 }
