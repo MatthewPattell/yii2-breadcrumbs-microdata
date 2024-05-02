@@ -54,4 +54,39 @@ Breadcrumbs::widget([
 ]);
 ```
 
+For view pages:
+```php
+// after set $this->title
+$this->params['breadcrumbs'][] = [
+    'label' => 'Articles',
+    'url' => Url::toRoute('press-center/articles'),
+];
+$this->params['breadcrumbs'][] = [
+    'label' => $this->title,
+    // if there is no url element, then this is the current page.
+];
+```
+
+HTML result:
+```html
+<ul itemscope="" itemtype="http://schema.org/BreadcrumbList">
+    <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+        <a href="/" itemprop="item">
+            <span itemprop="name">Home page</span>
+        </a>
+        <meta itemprop="position" content="1">
+    </li>
+    <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+        <a href="/press-center/articles" itemprop="item">
+            <span itemprop="name">Articles</span>
+        </a>
+        <meta itemprop="position" content="2">
+    </li>
+    <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem" class="text-light" style="opacity: 0.65;">
+        <span itemprop="name">10 Must-Read Books for Programmers</span>
+        <meta itemprop="position" content="3">
+    </li>
+</ul>
+```
+
 That's all. Check it.
